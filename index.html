@@ -1,1 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Overpowered Studios | The Ultimate Creator Ecosystem</title>
+    <meta name="description" content="Overpowered Studios offers a universal code editor, Nexus Lang, and an advanced AI Studio for developers and creators. One ID. Unlimited Innovation.">
+    <meta name="keywords" content="Overpowered Studios, Nexus Lang, AI Studio, Code Editor, Lex Yacc Compiler, Python, Developer Tools">
+    <meta name="author" content="Vishwam">
+    <link rel="canonical" href="https://vishwam162.github.io/overpowered-studios/">
 
+    <meta property="og:title" content="Overpowered Studios | Creator Ecosystem">
+    <meta property="og:description" content="Build, code, and generate with the world's most advanced tools. Featuring Nexus Lang and AI Studio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vishwam162.github.io/overpowered-studios/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        opDark: '#050505',
+                        opGlass: 'rgba(255, 255, 255, 0.03)',
+                        opBorder: 'rgba(255, 255, 255, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Overpowered Studios Ecosystem",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web, Windows, macOS, Linux",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <style>
+        /* Custom Glassmorphism & Animations */
+        body { background-color: #050505; color: #ffffff; }
+        .glass-card {
+            background: var(--opGlass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--opBorder);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .bg-glow {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, rgba(0,0,0,0) 70%);
+            top: -200px; left: 50%; transform: translateX(-50%);
+            z-index: -1; pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden relative">
+
+    <div class="bg-glow"></div>
+
+    <nav class="fixed w-full z-50 glass-card border-b-0 border-x-0 border-t-0 bg-opDark/80">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-display font-bold tracking-tighter">
+                OVERPOWERED<span class="text-indigo-500">.</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#ecosystem" class="hover:text-white transition">Ecosystem</a>
+                <a href="#nexus" class="hover:text-white transition">Nexus Lang</a>
+                <a href="https://github.com/Vishwam162" target="_blank" class="hover:text-white transition">GitHub</a>
+            </div>
+            <div>
+                <button id="authBtn" onclick="toggleAuth()" class="bg-white text-black px-5 py-2 rounded-full font-semibold text-sm hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                    Overpowered ID Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-40 pb-20 px-6 max-w-7xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight mb-6">
+            The Ultimate Ecosystem <br>
+            for <span class="gradient-text">Next-Gen Creators</span>
+        </h1>
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Replace your fragmented tools. Code in any language, generate multimodal AI assets, and build high-performance systems with a single, unified Overpowered ID.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#ecosystem" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-full font-semibold transition text-lg shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+                Explore Services
+            </a>
+            <a href="#" class="glass-card px-8 py-3 rounded-full font-semibold text-white transition text-lg">
+                View Documentation
+            </a>
+        </div>
+    </main>
+
+    <section id="ecosystem" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="mb-12">
+            <h2 class="text-3xl font-display font-bold">The Overpowered Suite</h2>
+            <p class="text-gray-400 mt-2">Log in once. Access everything.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+            
+            <div class="glass-card rounded-3xl p-8 md:col-span-2 md:row-span-1 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition duration-500">
+                    <svg width="120" height="120" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold font-display mb-2">Overpowered AI Studio</h3>
+                <p class="text-gray-400 max-w-md">One interface to rule them all. Generate high-fidelity images, compose music, edit videos, and utilize Agentic AI for deep web research and coding automation.</p>
+                <button class="mt-6 text-sm font-semibold text-indigo-400 hover:text-indigo-300">Launch AI Studio &rarr;</button>
+            </div>
+
+            <div id="nexus" class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold font-display mb-2">Nexus Lang</h3>
+                    <p class="text-gray-400 text-sm">Our proprietary, ultra-fast programming language built on SLY. Designed for high-speed math and AI interpreter logic.</p>
+                </div>
+                <a href="https://vishwam162.github.io/Nexus-Lang/" class="mt-6 inline-block w-full text-center bg-white/10 hover:bg-white/20 py-2 rounded-xl text-sm font-semibold transition">Read Docs</a>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold font-display mb-2">Universal IDE</h3>
+                    <p class="text-gray-400 text-sm">A downloadable, lightweight code editor. Run Nexus, Python, JS, and C++ seamlessly with compiler-level AI insights.</p>
+                </div>
+                <span class="inline-block mt-4 text-xs font-bold uppercase tracking-wider text-purple-400 border border-purple-400/30 bg-purple-400/10 px-3 py-1 rounded-full w-max">Coming Soon</span>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 md:col-span-2 relative overflow-hidden">
+                <div class="relative z-10 w-full md:w-2/3">
+                    <h3 class="text-2xl font-bold font-display mb-2">The Workstation OS</h3>
+                    <p class="text-gray-400">Download the ultimate creative suite. Seamlessly sync your assets between our photo editors, video timeline, and web builders. True desktop-class performance.</p>
+                    <button class="mt-6 bg-white text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:scale-105 transition transform">Download Client</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+            <p>&copy; 2026 Overpowered Studios. Built in Pune.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+                <a href="#" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // STEP 1: Once you create a Firebase project, paste your config here.
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        // import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // const firebaseConfig = {
+        //   apiKey: "YOUR_API_KEY",
+        //   authDomain: "overpowered-studios.firebaseapp.com",
+        //   projectId: "overpowered-studios",
+        //   storageBucket: "overpowered-studios.appspot.com",
+        //   messagingSenderId: "YOUR_ID",
+        //   appId: "YOUR_APP_ID"
+        // };
+
+        // const app = initializeApp(firebaseConfig);
+        // const auth = getAuth(app);
+        // const provider = new GoogleAuthProvider();
+
+        /* --- UI Logic for Auth (Simulated for now) --- */
+        let isLoggedIn = false;
+        window.toggleAuth = function() {
+            const btn = document.getElementById('authBtn');
+            if(!isLoggedIn) {
+                // Here is where signInWithPopup(auth, provider) will go
+                console.log("Initiating Firebase Login...");
+                btn.innerText = "Connecting...";
+                
+                // Simulating network delay
+                setTimeout(() => {
+                    isLoggedIn = true;
+                    btn.innerText = "Dashboard";
+                    btn.classList.replace('bg-white', 'bg-indigo-600');
+                    btn.classList.replace('text-black', 'text-white');
+                    alert("Welcome to your Overpowered ID!");
+                }, 800);
+            } else {
+                // Redirect to a user dashboard if logged in
+                alert("Redirecting to your Hub Dashboard...");
+            }
+        }
+    </script>
+</body>
+</html>

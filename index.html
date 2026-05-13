@@ -37,20 +37,48 @@
         }
     </script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Overpowered Studios Ecosystem",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Web, Windows, macOS, Linux",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+   <script type="module">
+    // Import Firebase from the CDN (The World-Class way for Static Sites)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // YOUR ACTUAL CONFIG FROM SCREENSHOT
+    const firebaseConfig = {
+      apiKey: "AIzaSyAE6Misr-FEqS4p1wnEnXDb-7n7GZUZXbQ",
+      authDomain: "overpowered-studios.firebaseapp.com",
+      projectId: "overpowered-studios",
+      storageBucket: "overpowered-studios.firebasestorage.app",
+      messagingSenderId: "548749272863",
+      appId: "1:548749272863:web:1959d1e0b49766e732722a",
+      measurementId: "G-X1K64H9QS3"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    /* --- Overpowered ID Auth Logic --- */
+    window.toggleAuth = async function() {
+        const btn = document.getElementById('authBtn');
+        try {
+            btn.innerText = "Connecting...";
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            
+            // Success! UI Change
+            btn.innerText = "Dashboard";
+            btn.classList.replace('bg-white', 'bg-indigo-600');
+            btn.classList.replace('text-black', 'text-white');
+            
+            alert("Welcome, " + user.displayName + "! Your Overpowered ID is now active.");
+        } catch (error) {
+            console.error(error);
+            btn.innerText = "Login Failed";
+            setTimeout(() => { btn.innerText = "Overpowered ID Login"; }, 2000);
+        }
     }
-    </script>
+</script>
 
     <style>
         /* Custom Glassmorphism & Animations */

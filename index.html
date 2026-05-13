@@ -5,245 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Overpowered Studios | The Ultimate Creator Ecosystem</title>
-    <meta name="description" content="Overpowered Studios offers a universal code editor, Nexus Lang, and an advanced AI Studio for developers and creators. One ID. Unlimited Innovation.">
-    <meta name="keywords" content="Overpowered Studios, Nexus Lang, AI Studio, Code Editor, Lex Yacc Compiler, Python, Developer Tools">
-    <meta name="author" content="Vishwam">
-    <link rel="canonical" href="https://vishwam162.github.io/overpowered-studios/">
+    <meta name="description" content="Overpowered Studios: Home of Nexus Lang, AI Studio, and the Universal Code Editor. Build the future with a single account.">
+    <meta name="keywords" content="Overpowered Studios, Nexus Lang, AI Studio, Code Editor, Vishwam Phalke, Software Development Pune">
+    <meta name="author" content="Vishwam Phalke">
 
-    <meta property="og:title" content="Overpowered Studios | Creator Ecosystem">
-    <meta property="og:description" content="Build, code, and generate with the world's most advanced tools. Featuring Nexus Lang and AI Studio.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vishwam162.github.io/overpowered-studios/">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        opDark: '#050505',
-                        opGlass: 'rgba(255, 255, 255, 0.03)',
-                        opBorder: 'rgba(255, 255, 255, 0.08)',
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
+                    colors: { opDark: '#050505', opGlass: 'rgba(255, 255, 255, 0.03)', opBorder: 'rgba(255, 255, 255, 0.08)' }
                 }
             }
         }
     </script>
 
-   <script type="module">
-    // Import Firebase from the CDN (The World-Class way for Static Sites)
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-    // YOUR ACTUAL CONFIG FROM SCREENSHOT
-    const firebaseConfig = {
-      apiKey: "AIzaSyAE6Misr-FEqS4p1wnEnXDb-7n7GZUZXbQ",
-      authDomain: "overpowered-studios.firebaseapp.com",
-      projectId: "overpowered-studios",
-      storageBucket: "overpowered-studios.firebasestorage.app",
-      messagingSenderId: "548749272863",
-      appId: "1:548749272863:web:1959d1e0b49766e732722a",
-      measurementId: "G-X1K64H9QS3"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    /* --- Overpowered ID Auth Logic --- */
-    window.toggleAuth = async function() {
-        const btn = document.getElementById('authBtn');
-        try {
-            btn.innerText = "Connecting...";
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            
-            // Success! UI Change
-            btn.innerText = "Dashboard";
-            btn.classList.replace('bg-white', 'bg-indigo-600');
-            btn.classList.replace('text-black', 'text-white');
-            
-            alert("Welcome, " + user.displayName + "! Your Overpowered ID is now active.");
-        } catch (error) {
-            console.error(error);
-            btn.innerText = "Login Failed";
-            setTimeout(() => { btn.innerText = "Overpowered ID Login"; }, 2000);
-        }
-    }
-</script>
-
     <style>
-        /* Custom Glassmorphism & Animations */
         body { background-color: #050505; color: #ffffff; }
         .glass-card {
-            background: var(--opGlass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--opBorder);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
         }
         .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
         }
         .gradient-text {
-            background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+            background: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .bg-glow {
-            position: absolute; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, rgba(0,0,0,0) 70%);
-            top: -200px; left: 50%; transform: translateX(-50%);
-            z-index: -1; pointer-events: none;
-        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden relative">
+<body class="antialiased overflow-x-hidden">
 
-    <div class="bg-glow"></div>
-
-    <nav class="fixed w-full z-50 glass-card border-b-0 border-x-0 border-t-0 bg-opDark/80">
+    <nav class="fixed w-full z-50 glass-card border-0 bg-opDark/70 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-display font-bold tracking-tighter">
                 OVERPOWERED<span class="text-indigo-500">.</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-                <a href="#ecosystem" class="hover:text-white transition">Ecosystem</a>
-                <a href="#nexus" class="hover:text-white transition">Nexus Lang</a>
-                <a href="https://github.com/Vishwam162" target="_blank" class="hover:text-white transition">GitHub</a>
-            </div>
-            <div>
-                <button id="authBtn" onclick="toggleAuth()" class="bg-white text-black px-5 py-2 rounded-full font-semibold text-sm hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                    Overpowered ID Login
+            <div class="flex items-center space-x-4">
+                <button id="authBtn" onclick="handleAuth()" class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition shadow-lg">
+                    Sign In / Create Account
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="relative pt-40 pb-20 px-6 max-w-7xl mx-auto text-center">
-        <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight mb-6">
-            The Ultimate Ecosystem <br>
-            for <span class="gradient-text">Next-Gen Creators</span>
+    <main class="pt-48 pb-20 px-6 text-center max-w-5xl mx-auto">
+        <h1 class="text-6xl md:text-8xl font-display font-bold mb-6 tracking-tight">
+            Design. Code. <br> <span class="gradient-text">Dominate.</span>
         </h1>
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Replace your fragmented tools. Code in any language, generate multimodal AI assets, and build high-performance systems with a single, unified Overpowered ID.
+        <p class="text-gray-400 text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+            One account for the entire Overpowered Studios ecosystem. From the Nexus programming language to professional-grade AI tools.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#ecosystem" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-full font-semibold transition text-lg shadow-[0_0_20px_rgba(79,70,229,0.4)]">
-                Explore Services
-            </a>
-            <a href="#" class="glass-card px-8 py-3 rounded-full font-semibold text-white transition text-lg">
-                View Documentation
-            </a>
+        <div class="flex flex-wrap justify-center gap-4">
+            <button onclick="handleAuth()" class="bg-indigo-600 px-10 py-4 rounded-full font-bold text-lg shadow-[0_0_25px_rgba(79,70,229,0.5)] hover:bg-indigo-500 transition">
+                Start Building Now
+            </button>
         </div>
     </main>
 
-    <section id="ecosystem" class="max-w-7xl mx-auto px-6 py-20">
-        <div class="mb-12">
-            <h2 class="text-3xl font-display font-bold">The Overpowered Suite</h2>
-            <p class="text-gray-400 mt-2">Log in once. Access everything.</p>
+    <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="glass-card rounded-[2rem] p-8 md:col-span-1">
+            <h3 class="text-2xl font-bold font-display mb-4">Nexus Lang</h3>
+            <p class="text-gray-400 mb-6">A custom engine built for high-performance AI and mathematical logic.</p>
+            <a href="https://vishwam162.github.io/Nexus-Lang/" class="text-indigo-400 font-bold hover:underline">Read Documentation →</a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
-            
-            <div class="glass-card rounded-3xl p-8 md:col-span-2 md:row-span-1 relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition duration-500">
-                    <svg width="120" height="120" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold font-display mb-2">Overpowered AI Studio</h3>
-                <p class="text-gray-400 max-w-md">One interface to rule them all. Generate high-fidelity images, compose music, edit videos, and utilize Agentic AI for deep web research and coding automation.</p>
-                <button class="mt-6 text-sm font-semibold text-indigo-400 hover:text-indigo-300">Launch AI Studio &rarr;</button>
+        <div class="glass-card rounded-[2rem] p-8 md:col-span-2 relative overflow-hidden">
+            <h3 class="text-3xl font-bold font-display mb-4">Overpowered AI Studio</h3>
+            <p class="text-gray-400 max-w-md">Generate 4K videos, studio-grade music, and conduct deep agentic research with one click.</p>
+            <div class="mt-8 flex space-x-2">
+                <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-indigo-300">Agentic AI</span>
+                <span class="bg-white/10 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-purple-300">Multimodal</span>
             </div>
-
-            <div id="nexus" class="glass-card rounded-3xl p-8 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold font-display mb-2">Nexus Lang</h3>
-                    <p class="text-gray-400 text-sm">Our proprietary, ultra-fast programming language built on SLY. Designed for high-speed math and AI interpreter logic.</p>
-                </div>
-                <a href="https://vishwam162.github.io/Nexus-Lang/" class="mt-6 inline-block w-full text-center bg-white/10 hover:bg-white/20 py-2 rounded-xl text-sm font-semibold transition">Read Docs</a>
-            </div>
-
-            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-bold font-display mb-2">Universal IDE</h3>
-                    <p class="text-gray-400 text-sm">A downloadable, lightweight code editor. Run Nexus, Python, JS, and C++ seamlessly with compiler-level AI insights.</p>
-                </div>
-                <span class="inline-block mt-4 text-xs font-bold uppercase tracking-wider text-purple-400 border border-purple-400/30 bg-purple-400/10 px-3 py-1 rounded-full w-max">Coming Soon</span>
-            </div>
-
-            <div class="glass-card rounded-3xl p-8 md:col-span-2 relative overflow-hidden">
-                <div class="relative z-10 w-full md:w-2/3">
-                    <h3 class="text-2xl font-bold font-display mb-2">The Workstation OS</h3>
-                    <p class="text-gray-400">Download the ultimate creative suite. Seamlessly sync your assets between our photo editors, video timeline, and web builders. True desktop-class performance.</p>
-                    <button class="mt-6 bg-white text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg hover:scale-105 transition transform">Download Client</button>
-                </div>
-            </div>
-
         </div>
+
+        <div class="glass-card rounded-[2rem] p-8 md:col-span-2">
+            <h3 class="text-2xl font-bold font-display mb-4">The Universal IDE</h3>
+            <p class="text-gray-400">A professional-grade code editor for any language. Downloadable desktop performance with cloud-synced projects.</p>
+            <button class="mt-6 border border-white/20 px-6 py-2 rounded-full text-sm opacity-50 cursor-not-allowed">Coming Soon</button>
+        </div>
+
+        <div class="glass-card rounded-[2rem] p-8">
+            <h3 class="text-2xl font-bold font-display mb-4">Studio Cloud</h3>
+            <p class="text-gray-400">Store your project assets and Nexus scripts in your Overpowered account.</p>
+        </div>
+
     </section>
 
-    <footer class="border-t border-white/10 mt-20">
-        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; 2026 Overpowered Studios. Built in Pune.</p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition">Terms of Service</a>
-                <a href="#" class="hover:text-white transition">Contact</a>
-            </div>
-        </div>
-    </footer>
-
     <script type="module">
-        // STEP 1: Once you create a Firebase project, paste your config here.
-        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        // import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // const firebaseConfig = {
-        //   apiKey: "YOUR_API_KEY",
-        //   authDomain: "overpowered-studios.firebaseapp.com",
-        //   projectId: "overpowered-studios",
-        //   storageBucket: "overpowered-studios.appspot.com",
-        //   messagingSenderId: "YOUR_ID",
-        //   appId: "YOUR_APP_ID"
-        // };
+        // Your Firebase Configuration (From Screenshot)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAE6Misr-FEqS4p1wnEnXDb-7n7GZUZXbQ",
+            authDomain: "overpowered-studios.firebaseapp.com",
+            projectId: "overpowered-studios",
+            storageBucket: "overpowered-studios.firebasestorage.app",
+            messagingSenderId: "548749272863",
+            appId: "1:548749272863:web:1959d1e0b49766e732722a",
+            measurementId: "G-X1K64H9QS3"
+        };
 
-        // const app = initializeApp(firebaseConfig);
-        // const auth = getAuth(app);
-        // const provider = new GoogleAuthProvider();
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        /* --- UI Logic for Auth (Simulated for now) --- */
-        let isLoggedIn = false;
-        window.toggleAuth = function() {
-            const btn = document.getElementById('authBtn');
-            if(!isLoggedIn) {
-                // Here is where signInWithPopup(auth, provider) will go
-                console.log("Initiating Firebase Login...");
-                btn.innerText = "Connecting...";
-                
-                // Simulating network delay
-                setTimeout(() => {
-                    isLoggedIn = true;
-                    btn.innerText = "Dashboard";
-                    btn.classList.replace('bg-white', 'bg-indigo-600');
-                    btn.classList.replace('text-black', 'text-white');
-                    alert("Welcome to your Overpowered ID!");
-                }, 800);
-            } else {
-                // Redirect to a user dashboard if logged in
-                alert("Redirecting to your Hub Dashboard...");
+        const btn = document.getElementById('authBtn');
+
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                btn.innerText = "Open Dashboard";
+                btn.classList.replace('bg-white', 'bg-indigo-600');
+                btn.classList.replace('text-black', 'text-white');
             }
-        }
+        });
+
+        // Authentication Function
+        window.handleAuth = async function() {
+            if (auth.currentUser) {
+                alert("Redirecting to your Overpowered Dashboard...");
+                return;
+            }
+
+            try {
+                btn.innerText = "Connecting...";
+                const result = await signInWithPopup(auth, provider);
+                alert("Account Created! Welcome to the studio, " + result.user.displayName);
+            } catch (error) {
+                console.error(error);
+                btn.innerText = "Sign In / Create Account";
+                if(error.code === 'auth/unauthorized-domain') {
+                    alert("Security Error: Please authorize vishwam162.github.io in Firebase Settings.");
+                }
+            }
+        };
     </script>
 </body>
 </html>

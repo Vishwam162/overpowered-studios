@@ -3,149 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Ecosystem | Overpowered Studios</title>
+    <title>Overpowered Studios | The Nexus Ecosystem</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
-        :root { --brand-primary: #58a6ff; --brand-secondary: #bc8cff; --dark-bg: #03060a; }
-        body { background-color: var(--dark-bg); color: #d1d5db; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .text-gradient { background: linear-gradient(to right, var(--brand-primary), var(--brand-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-blur { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
-        .card-blur:hover { border-color: var(--brand-primary); transform: translateY(-5px); }
-        #download-modal { display: none; opacity: 0; transition: opacity 0.3s ease; }
-        #download-modal.active { display: flex; opacity: 1; }
+        :root {
+            --sunset-gold: #ff9d00;
+            --sunset-red: #ff4d00;
+            --deep-obsidian: #03060a;
+            --glass-bg: rgba(13, 17, 23, 0.7);
+        }
+        
+        body { 
+            background-color: var(--deep-obsidian); 
+            color: #d1d5db; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* The Sunset Gradient Glow */
+        .sunset-glow {
+            background: linear-gradient(135deg, var(--sunset-gold), var(--sunset-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Glassmorphism */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 157, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            border-color: var(--sunset-gold);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 157, 0, 0.05);
+        }
+
+        /* Animated Background Sunset Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* Scroll Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--sunset-gold), var(--sunset-red));
+            z-index: 1000;
+            width: 0%;
+        }
     </style>
 </head>
-<body class="selection:bg-blue-500 selection:text-white">
+<body class="selection:bg-orange-500 selection:text-white">
 
-    <nav class="fixed top-0 w-full z-[100] card-blur border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg">N</div>
-                <span class="text-2xl font-extrabold tracking-tight text-white uppercase">Nexus Ecosystem</span>
+    <div id="progress-bar"></div>
+
+    <div class="orb w-[600px] h-[600px] bg-orange-600 -top-20 -left-20"></div>
+    <div class="orb w-[500px] h-[500px] bg-red-600 bottom-0 right-0"></div>
+
+    <nav class="fixed top-0 w-full z-[100] border-b border-white/5 bg-black/40 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-orange-500 to-red-600 flex items-center justify-center font-black text-white shadow-lg shadow-orange-600/20">O</div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl font-black text-white tracking-tighter">OVERPOWERED</span>
+                    <span class="text-[10px] font-bold text-orange-500 tracking-[0.3em] uppercase">Studios</span>
+                </div>
             </div>
-            <div class="hidden lg:flex space-x-8 items-center font-semibold text-sm">
-                <a href="#projects" class="hover:text-white transition">Projects</a>
-                <a href="#roadmap" class="hover:text-white transition">Upcoming</a>
-                <a href="#founder" class="hover:text-white transition">The Founder</a>
-                <a href="https://github.com/Vishwam162" target="_blank" class="bg-blue-600 px-5 py-2 rounded-full text-white hover:bg-blue-500 transition">GitHub</a>
+            
+            <div class="hidden lg:flex space-x-12 items-center font-bold text-[11px] uppercase tracking-[0.2em] text-gray-400">
+                <a href="#universe" class="hover:text-orange-500 transition">Universe</a>
+                <a href="#vision" class="hover:text-orange-500 transition">The Founder</a>
+                <a href="#roadmap" class="hover:text-orange-500 transition">Nodes</a>
+                <a href="https://github.com/Vishwam162" target="_blank" class="px-6 py-2 border border-orange-500/30 rounded-full text-orange-400 hover:bg-orange-500 hover:text-white transition-all">GitHub</a>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-44 pb-20 px-6 text-center overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-blue-600/10 blur-[120px] rounded-full"></div>
+    <section class="relative pt-60 pb-32 px-6 text-center">
         <div class="max-w-5xl mx-auto relative z-10">
-            <span class="inline-block px-4 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-blue-400 mb-6 uppercase tracking-[0.3em]">Overpowered Studios</span>
-            <h1 class="text-6xl md:text-8xl font-black text-white leading-[1] mb-8 tracking-tighter">
-                Engineering <br> the <span class="text-gradient">Nexus.</span>
+            <span class="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-[10px] font-black text-orange-400 mb-10 uppercase tracking-[0.5em]">Establishing Global Node: Pune, India</span>
+            <h1 class="text-7xl md:text-9xl font-black text-white leading-[0.9] mb-10 tracking-tighter">
+                THE <span class="sunset-glow">NEXUS</span> <br> ECOSYSTEM.
             </h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                A unified suite of independent software architecture, native compilers, and cybernetic user interfaces.
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Building independent software architectures that define the next generation of digital sovereignty. Zero dependencies. Infinite power.
+            </p>
+            <div class="flex justify-center gap-6">
+                <a href="#universe" class="px-10 py-5 bg-white text-black font-black text-sm rounded-2xl hover:bg-orange-500 hover:text-white transition-all shadow-xl">EXPLORE UNIVERSE</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="universe" class="py-32 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="mb-20 text-center">
+            <h2 class="text-5xl font-black text-white tracking-tighter mb-4 uppercase">Active Deployments</h2>
+            <p class="text-orange-500 font-bold uppercase tracking-widest text-xs">Standalone Software Suite</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+            
+            <div class="glass-panel p-12 rounded-[3rem] relative group overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 text-6xl opacity-10 group-hover:opacity-20 transition">🌐</div>
+                <h3 class="text-4xl font-black text-white mb-6 tracking-tighter">Nexus Browser</h3>
+                <p class="text-gray-400 mb-10 leading-relaxed text-lg">
+                    A cybernetic browsing engine featuring deep DOM injection and a unique obsidian aesthetic. Built on Electron for native Windows performance.
+                </p>
+                <a href="https://Vishwam162.github.io/Nexus-Browser/" 
+                   class="inline-flex items-center gap-3 px-8 py-4 bg-orange-600 text-white font-black rounded-2xl hover:bg-white hover:text-black transition-all">
+                   VISIT LANDING PAGE
+                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="3"></path></svg>
+                </a>
+            </div>
+
+            <div class="glass-panel p-12 rounded-[3rem] relative group overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 text-6xl opacity-10 group-hover:opacity-20 transition">⚙️</div>
+                <h3 class="text-4xl font-black text-white mb-6 tracking-tighter">Nexus Lang</h3>
+                <p class="text-gray-400 mb-10 leading-relaxed text-lg">
+                    An independent, high-speed programming language built using SLY. Designed to compile standalone binaries with zero external runtimes.
+                </p>
+                <a href="https://Vishwam162.github.io/Nexus-Lang/" 
+                   class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-black rounded-2xl hover:bg-orange-600 hover:text-white transition-all">
+                   OPEN REPOSITORY
+                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="3"></path></svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="vision" class="py-32 px-6 bg-white/[0.02] border-y border-white/5">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+            <div class="lg:w-1/2 relative">
+                <div class="w-full aspect-square bg-gradient-to-br from-orange-500 to-red-600 rounded-[4rem] flex items-center justify-center text-9xl shadow-2xl rotate-3 group-hover:rotate-0 transition-transform">
+                    👨‍💻
+                </div>
+                <div class="absolute -bottom-6 -right-6 p-8 glass-panel rounded-3xl">
+                    <span class="text-white font-black text-2xl">Class 10</span>
+                    <p class="text-orange-500 font-bold text-[10px] uppercase tracking-widest">Education Node</p>
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <h4 class="text-orange-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-6">The Founder & Owner</h4>
+                <h2 class="text-6xl font-black text-white mb-8 tracking-tighter leading-none">Vishwam Phalke</h2>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        Based in <span class="text-white font-bold">Pune, India</span>, Vishwam is a software architect specializing in the fusion of AI and native development. 
+                    </p>
+                    <p>
+                        As the creator of Overpowered Studios, he builds software that prioritizes speed and standalone efficiency, ensuring that high-level computing is accessible without massive dependency chains.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-32 px-6 max-w-4xl mx-auto">
+        <h2 class="text-center text-2xl font-black text-white mb-16 uppercase tracking-[0.5em]">Future Nodes</h2>
+        <div class="space-y-6">
+            <div class="p-8 glass-panel rounded-3xl flex justify-between items-center group">
+                <span class="font-bold text-xl text-gray-300 group-hover:text-orange-500 transition">Personal Agentic AI (JARVIS)</span>
+                <span class="px-4 py-1 rounded-full bg-white/5 text-[10px] font-bold text-gray-500 uppercase">Researching</span>
+            </div>
+            <div class="p-8 glass-panel rounded-3xl flex justify-between items-center group">
+                <span class="font-bold text-xl text-gray-300 group-hover:text-orange-500 transition">Browser-Based Publishing Suite</span>
+                <span class="px-4 py-1 rounded-full bg-orange-500/10 text-[10px] font-bold text-orange-400 uppercase">Planned</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 text-center relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-black text-white mb-8 tracking-tighter">Stay Overpowered.</h2>
+            <div class="flex justify-center space-x-8 mb-12">
+                <a href="https://github.com/Vishwam162" class="text-gray-500 hover:text-orange-500 transition font-bold uppercase text-[10px] tracking-widest">GitHub</a>
+                <a href="mailto:contact@overpowered.site" class="text-gray-500 hover:text-orange-500 transition font-bold uppercase text-[10px] tracking-widest">Email</a>
+            </div>
+            <p class="text-[10px] text-gray-600 font-bold tracking-[0.5em] uppercase">
+                &copy; 2026 Overpowered Studios &bull; Vishwam Phalke &bull; Pune Node
             </p>
         </div>
-    </section>
-
-    <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-center text-4xl font-black text-white mb-16 tracking-tight">Active Deployments</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            
-            <div class="p-10 rounded-[2.5rem] card-blur">
-                <div class="flex justify-between items-start mb-8">
-                    <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center text-3xl">🌐</div>
-                    <span class="text-[10px] font-bold bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/20">LIVE v1.0.0</span>
-                </div>
-                <h3 class="text-3xl font-black text-white mb-4">Nexus Browser</h3>
-                <p class="text-gray-400 mb-8 leading-relaxed">A standalone Chromium-based browser with a custom cybernetic UI and advanced site re-branding capabilities. Compiled to native Windows binary.</p>
-                <div class="flex gap-4">
-                    <a href="https://github.com/Vishwam162/Nexus-Browser" class="px-6 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-blue-500 hover:text-white transition">View Repository</a>
-                </div>
-            </div>
-
-            <div class="p-10 rounded-[2.5rem] card-blur">
-                <div class="flex justify-between items-start mb-8">
-                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center text-3xl">⚙️</div>
-                    <span class="text-[10px] font-bold bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/20">STABLE v1.1</span>
-                </div>
-                <h3 class="text-3xl font-black text-white mb-4">Nexus Lang</h3>
-                <p class="text-gray-400 mb-8 leading-relaxed">A high-performance programming language designed for zero-dependency execution. Built with custom lexers and parsers for native speed.</p>
-                <div class="flex gap-4">
-                    <button onclick="toggleModal()" class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-500 transition">Get Compiler</button>
-                    <a href="https://github.com/Vishwam162/Nexus-Lang" class="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl font-bold text-sm hover:bg-white/10 transition">Docs</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="roadmap" class="py-20 bg-white/[0.02]">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black text-white mb-12 uppercase tracking-widest">Future Roadmap</h2>
-            <div class="space-y-4">
-                <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] flex justify-between items-center opacity-70">
-                    <span class="font-bold text-gray-300">Nexus OS Kernel (Conceptual)</span>
-                    <span class="text-[10px] text-blue-400 font-bold uppercase">Phase: Research</span>
-                </div>
-                <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] flex justify-between items-center opacity-70">
-                    <span class="font-bold text-gray-300">Agentic AI Virtual Assistant</span>
-                    <span class="text-[10px] text-purple-400 font-bold uppercase">Phase: Prototype</span>
-                </div>
-                <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] flex justify-between items-center opacity-70 text-gray-500">
-                    <span class="font-bold italic">[REDACTED PROJECT]</span>
-                    <span class="text-[10px] font-bold uppercase">Classified</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="founder" class="py-32 px-6">
-        <div class="max-w-6xl mx-auto card-blur rounded-[3rem] p-12 lg:p-20 flex flex-col lg:flex-row items-center gap-16 border-blue-500/10">
-            <div class="lg:w-1/3">
-                <div class="aspect-square bg-gradient-to-br from-blue-600 to-purple-600 rounded-[2rem] flex items-center justify-center text-8xl shadow-2xl shadow-blue-500/20">👨‍💻</div>
-            </div>
-            <div class="lg:w-2/3">
-                <h4 class="text-blue-500 font-bold tracking-[0.3em] uppercase mb-4 text-[10px]">Founder & Lead Architect</h4>
-                <h2 class="text-6xl font-black text-white mb-6">Vishwam Phalke</h2>
-                <p class="text-xl text-gray-400 leading-relaxed mb-8">
-                    Based in Pune, India, Vishwam is a 15-year-old software architect and the mastermind behind <span class="text-white font-bold">Overpowered Studios</span>. Currently in Class 10, he specializes in building high-performance standalone tools that eliminate software dependencies.
-                </p>
-                <div class="grid grid-cols-2 gap-4 text-sm font-bold text-blue-300 uppercase tracking-widest">
-                    <span>&bull; Python / JS / HTML</span>
-                    <span>&bull; Compiler Engineering</span>
-                    <span>&bull; UI/UX Strategy</span>
-                    <span>&bull; Game Modding</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="download-modal" class="fixed inset-0 z-[200] items-center justify-center p-6 bg-black/90 backdrop-blur-md">
-        <div class="max-w-3xl w-full card-blur p-12 rounded-[3rem] relative text-center">
-            <button onclick="toggleModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white">✕</button>
-            <h2 class="text-4xl font-black text-white mb-8">Download Nexus Lang</h2>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <a href="https://github.com/Vishwam162/Nexus-Lang/releases/download/v1.1/nexus_v1.1.exe" class="p-6 bg-blue-600 rounded-2xl font-bold text-white hover:bg-blue-500 transition">Get Compiler (.EXE)</a>
-                <a href="https://github.com/Vishwam162/Nexus-Lang/releases/download/v1.1/nexus-support.vsix" class="p-6 bg-purple-600 rounded-2xl font-bold text-white hover:bg-purple-500 transition">VS Code Extension</a>
-            </div>
-        </div>
-    </div>
-
-    <footer class="py-12 border-t border-white/5 text-center">
-        <p class="text-[10px] text-gray-600 font-bold tracking-widest uppercase">
-            &copy; 2026 Overpowered Studios &bull; Vishwam Phalke &bull; Pune, India
-        </p>
     </footer>
 
     <script>
-        function toggleModal() {
-            const modal = document.getElementById('download-modal');
-            modal.classList.toggle('active');
-        }
-        window.onclick = function(e) {
-            const modal = document.getElementById('download-modal');
-            if (e.target == modal) toggleModal();
-        }
+        // Scroll Progress Logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
     </script>
 </body>
 </html>

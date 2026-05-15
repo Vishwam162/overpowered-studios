@@ -3,291 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overpowered Studios | Ecosystem Hub</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Nexus Ecosystem | Overpowered Studios</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] },
-                    colors: { opDark: '#030303', opAccent: '#6366f1' }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* World-Class UI Elements */
-        body { 
-            background-color: #030303; 
-            color: #ffffff; 
-            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        .glass-card {
-            background: rgba(15, 15, 15, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        /* Modal Animations */
-        #authModal { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .modal-content { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .hidden-modal { opacity: 0; visibility: hidden; pointer-events: none; }
-        .show-modal { opacity: 1; visibility: visible; pointer-events: auto; }
-        .show-modal .modal-content { transform: scale(1); }
-        .hidden-modal .modal-content { transform: scale(0.95); }
-        
-        /* Input Styling */
-        input {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-        }
-        input:focus { border-color: #6366f1; outline: none; background: rgba(255,255,255,0.1); }
+        :root { --brand-primary: #58a6ff; --brand-secondary: #bc8cff; --dark-bg: #03060a; }
+        body { background-color: var(--dark-bg); color: #d1d5db; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .text-gradient { background: linear-gradient(to right, var(--brand-primary), var(--brand-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-blur { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
+        .card-blur:hover { border-color: var(--brand-primary); transform: translateY(-5px); }
+        #download-modal { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        #download-modal.active { display: flex; opacity: 1; }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden min-h-screen relative flex flex-col">
+<body class="selection:bg-blue-500 selection:text-white">
 
-    <div class="absolute top-[-20%] left-1/2 transform -translate-x-1/2 w-[800px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
-
-    <nav class="fixed w-full z-40 glass-card border-x-0 border-t-0 bg-[#030303]/80">
+    <nav class="fixed top-0 w-full z-[100] card-blur border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-display font-bold tracking-tighter cursor-pointer">
-                OVERPOWERED<span class="text-indigo-500">.</span>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg">N</div>
+                <span class="text-2xl font-extrabold tracking-tight text-white uppercase">Nexus Ecosystem</span>
             </div>
-            
-            <div id="navAuthGroup" class="flex items-center space-x-3">
-                <button onclick="openModal('login')" class="text-sm font-medium text-gray-300 hover:text-white px-4 py-2 transition">
-                    Log In
-                </button>
-                <button onclick="openModal('signup')" class="bg-white text-black px-5 py-2 rounded-full font-semibold text-sm hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.15)]">
-                    Create Account
-                </button>
-            </div>
-
-            <div id="navUserGroup" class="hidden flex items-center space-x-4">
-                <span id="userNameDisplay" class="text-sm text-gray-300 font-medium"></span>
-                <button class="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-indigo-500 transition shadow-[0_0_15px_rgba(99,102,241,0.4)]">
-                    Studio Dashboard
-                </button>
-                <button onclick="logout()" class="text-sm text-gray-500 hover:text-red-400 transition">Log Out</button>
+            <div class="hidden lg:flex space-x-8 items-center font-semibold text-sm">
+                <a href="#projects" class="hover:text-white transition">Projects</a>
+                <a href="#roadmap" class="hover:text-white transition">Upcoming</a>
+                <a href="#founder" class="hover:text-white transition">The Founder</a>
+                <a href="https://github.com/Vishwam162" target="_blank" class="bg-blue-600 px-5 py-2 rounded-full text-white hover:bg-blue-500 transition">GitHub</a>
             </div>
         </div>
     </nav>
 
-    <main class="pt-40 pb-20 px-6 text-center max-w-5xl mx-auto flex-grow flex flex-col justify-center">
-        <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 mx-auto">
-            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <span class="text-xs font-semibold tracking-wide text-gray-300 uppercase">System Online V1.0</span>
+    <section class="relative pt-44 pb-20 px-6 text-center overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-blue-600/10 blur-[120px] rounded-full"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <span class="inline-block px-4 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-blue-400 mb-6 uppercase tracking-[0.3em]">Overpowered Studios</span>
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-[1] mb-8 tracking-tighter">
+                Engineering <br> the <span class="text-gradient">Nexus.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                A unified suite of independent software architecture, native compilers, and cybernetic user interfaces.
+            </p>
         </div>
-        <h1 class="text-6xl md:text-8xl font-display font-bold mb-6 tracking-tight leading-tight">
-            Architect the <br> <span class="gradient-text">Impossible.</span>
-        </h1>
-        <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            One Overpowered ID connects you to our custom compiler, advanced IDE, and multimodal AI generation tools. Built for the next generation of engineers.
-        </p>
-    </main>
+    </section>
 
-    <section class="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card rounded-[24px] p-8 md:col-span-1 group">
-            <h3 class="text-2xl font-bold font-display mb-3">Nexus Lang</h3>
-            <p class="text-gray-400 text-sm mb-6">Our proprietary language engine utilizing AST logic for ultra-fast, agentic workflows.</p>
-            <a href="https://vishwam162.github.io/Nexus-Lang/" class="text-indigo-400 font-semibold group-hover:text-indigo-300 transition flex items-center">
-                Read Documentation <span class="ml-2 group-hover:translate-x-1 transition">→</span>
-            </a>
+    <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
+        <h2 class="text-center text-4xl font-black text-white mb-16 tracking-tight">Active Deployments</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="p-10 rounded-[2.5rem] card-blur">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center text-3xl">🌐</div>
+                    <span class="text-[10px] font-bold bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/20">LIVE v1.0.0</span>
+                </div>
+                <h3 class="text-3xl font-black text-white mb-4">Nexus Browser</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">A standalone Chromium-based browser with a custom cybernetic UI and advanced site re-branding capabilities. Compiled to native Windows binary.</p>
+                <div class="flex gap-4">
+                    <a href="https://github.com/Vishwam162/Nexus-Browser" class="px-6 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-blue-500 hover:text-white transition">View Repository</a>
+                </div>
+            </div>
+
+            <div class="p-10 rounded-[2.5rem] card-blur">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center text-3xl">⚙️</div>
+                    <span class="text-[10px] font-bold bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/20">STABLE v1.1</span>
+                </div>
+                <h3 class="text-3xl font-black text-white mb-4">Nexus Lang</h3>
+                <p class="text-gray-400 mb-8 leading-relaxed">A high-performance programming language designed for zero-dependency execution. Built with custom lexers and parsers for native speed.</p>
+                <div class="flex gap-4">
+                    <button onclick="toggleModal()" class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-500 transition">Get Compiler</button>
+                    <a href="https://github.com/Vishwam162/Nexus-Lang" class="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl font-bold text-sm hover:bg-white/10 transition">Docs</a>
+                </div>
+            </div>
+
         </div>
-        <div class="glass-card rounded-[24px] p-8 md:col-span-2 relative overflow-hidden group">
-            <h3 class="text-3xl font-bold font-display mb-3">AI Studio Matrix</h3>
-            <p class="text-gray-400 max-w-md text-sm">Deploy autonomous agents, render 4K video, and synthesize audio within a unified, high-performance browser environment.</p>
-            <div class="mt-6 flex gap-2">
-                <span class="border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 px-3 py-1 rounded-full text-xs font-bold uppercase">Multimodal</span>
-                <span class="border border-purple-500/30 bg-purple-500/10 text-purple-300 px-3 py-1 rounded-full text-xs font-bold uppercase">Agents</span>
+    </section>
+
+    <section id="roadmap" class="py-20 bg-white/[0.02]">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-black text-white mb-12 uppercase tracking-widest">Future Roadmap</h2>
+            <div class="space-y-4">
+                <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] flex justify-between items-center opacity-70">
+                    <span class="font-bold text-gray-300">Nexus OS Kernel (Conceptual)</span>
+                    <span class="text-[10px] text-blue-400 font-bold uppercase">Phase: Research</span>
+                </div>
+                <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] flex justify-between items-center opacity-70">
+                    <span class="font-bold text-gray-300">Agentic AI Virtual Assistant</span>
+                    <span class="text-[10px] text-purple-400 font-bold uppercase">Phase: Prototype</span>
+                </div>
+                <div class="p-6 rounded-2xl border border-white/5 bg-white/[0.01] flex justify-between items-center opacity-70 text-gray-500">
+                    <span class="font-bold italic">[REDACTED PROJECT]</span>
+                    <span class="text-[10px] font-bold uppercase">Classified</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden-modal">
-        <div class="modal-content glass-card w-full max-w-md p-8 rounded-[24px] relative border border-white/10 shadow-2xl bg-[#0a0a0a]">
-            <button onclick="closeModal()" class="absolute top-5 right-5 text-gray-500 hover:text-white transition">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"></path></svg>
-            </button>
-
-            <div class="text-center mb-8">
-                <h2 id="modalTitle" class="text-2xl font-display font-bold mb-1">Create Account</h2>
-                <p id="modalSubtitle" class="text-gray-400 text-sm">Join the Overpowered Ecosystem.</p>
+    <section id="founder" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto card-blur rounded-[3rem] p-12 lg:p-20 flex flex-col lg:flex-row items-center gap-16 border-blue-500/10">
+            <div class="lg:w-1/3">
+                <div class="aspect-square bg-gradient-to-br from-blue-600 to-purple-600 rounded-[2rem] flex items-center justify-center text-8xl shadow-2xl shadow-blue-500/20">👨‍💻</div>
             </div>
-
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 mb-1">Email Address</label>
-                    <input type="email" id="emailInput" class="w-full px-4 py-3 rounded-xl text-sm transition" placeholder="vishwam@example.com">
+            <div class="lg:w-2/3">
+                <h4 class="text-blue-500 font-bold tracking-[0.3em] uppercase mb-4 text-[10px]">Founder & Lead Architect</h4>
+                <h2 class="text-6xl font-black text-white mb-6">Vishwam Phalke</h2>
+                <p class="text-xl text-gray-400 leading-relaxed mb-8">
+                    Based in Pune, India, Vishwam is a 15-year-old software architect and the mastermind behind <span class="text-white font-bold">Overpowered Studios</span>. Currently in Class 10, he specializes in building high-performance standalone tools that eliminate software dependencies.
+                </p>
+                <div class="grid grid-cols-2 gap-4 text-sm font-bold text-blue-300 uppercase tracking-widest">
+                    <span>&bull; Python / JS / HTML</span>
+                    <span>&bull; Compiler Engineering</span>
+                    <span>&bull; UI/UX Strategy</span>
+                    <span>&bull; Game Modding</span>
                 </div>
-                <div>
-                    <label class="block text-xs font-medium text-gray-400 mb-1">Password</label>
-                    <input type="password" id="passInput" class="w-full px-4 py-3 rounded-xl text-sm transition" placeholder="••••••••">
-                </div>
-                <button id="submitBtn" onclick="handleEmailAuth()" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-gray-200 transition mt-2">
-                    Sign Up
-                </button>
-                <p id="authError" class="text-red-400 text-xs text-center hidden mt-2"></p>
             </div>
+        </div>
+    </section>
 
-            <div class="relative flex py-6 items-center">
-                <div class="flex-grow border-t border-white/10"></div>
-                <span class="flex-shrink-0 mx-4 text-gray-500 text-xs font-medium uppercase">Or continue with</span>
-                <div class="flex-grow border-t border-white/10"></div>
-            </div>
-
-            <button onclick="handleGoogleAuth()" class="w-full bg-[#141414] border border-white/10 text-white font-medium py-3 rounded-xl hover:bg-white/5 transition flex items-center justify-center space-x-3">
-                <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                <span>Google</span>
-            </button>
-
-            <div class="mt-6 text-center text-sm text-gray-400">
-                <span id="toggleText">Already have an account?</span> 
-                <button onclick="toggleModalMode()" class="text-white font-semibold hover:underline ml-1" id="toggleBtn">Log In</button>
+    <div id="download-modal" class="fixed inset-0 z-[200] items-center justify-center p-6 bg-black/90 backdrop-blur-md">
+        <div class="max-w-3xl w-full card-blur p-12 rounded-[3rem] relative text-center">
+            <button onclick="toggleModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white">✕</button>
+            <h2 class="text-4xl font-black text-white mb-8">Download Nexus Lang</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+                <a href="https://github.com/Vishwam162/Nexus-Lang/releases/download/v1.1/nexus_v1.1.exe" class="p-6 bg-blue-600 rounded-2xl font-bold text-white hover:bg-blue-500 transition">Get Compiler (.EXE)</a>
+                <a href="https://github.com/Vishwam162/Nexus-Lang/releases/download/v1.1/nexus-support.vsix" class="p-6 bg-purple-600 rounded-2xl font-bold text-white hover:bg-purple-500 transition">VS Code Extension</a>
             </div>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-[10px] text-gray-600 font-bold tracking-widest uppercase">
+            &copy; 2026 Overpowered Studios &bull; Vishwam Phalke &bull; Pune, India
+        </p>
+    </footer>
 
-        // Your Exact Config
-       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAE6Misr-FEqS4p1wnEnXdB-7n7GZUZXbQ",
-  authDomain: "overpowered-studios.firebaseapp.com",
-  projectId: "overpowered-studios",
-  storageBucket: "overpowered-studios.firebasestorage.app",
-  messagingSenderId: "548749272863",
-  appId: "1:548749272863:web:1959d1e0049766e732722a",
-  measurementId: "G-X1KG4H9Q53"
-};
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-
-        let currentMode = 'signup'; // Can be 'login' or 'signup'
-        const modal = document.getElementById('authModal');
-        const errorText = document.getElementById('authError');
-
-        // ==== UI CONTROL LOGIC ====
-        window.openModal = (mode) => {
-            currentMode = mode;
-            updateModalUI();
-            modal.classList.remove('hidden-modal');
-            modal.classList.add('show-modal');
-            errorText.classList.add('hidden');
-        };
-
-        window.closeModal = () => {
-            modal.classList.remove('show-modal');
-            modal.classList.add('hidden-modal');
-        };
-
-        window.toggleModalMode = () => {
-            currentMode = currentMode === 'login' ? 'signup' : 'login';
-            updateModalUI();
-        };
-
-        function updateModalUI() {
-            if(currentMode === 'login') {
-                document.getElementById('modalTitle').innerText = "Welcome Back";
-                document.getElementById('modalSubtitle').innerText = "Log in to your Overpowered ID.";
-                document.getElementById('submitBtn').innerText = "Log In";
-                document.getElementById('toggleText').innerText = "Don't have an account?";
-                document.getElementById('toggleBtn').innerText = "Sign Up";
-            } else {
-                document.getElementById('modalTitle').innerText = "Create Account";
-                document.getElementById('modalSubtitle').innerText = "Join the Overpowered Ecosystem.";
-                document.getElementById('submitBtn').innerText = "Sign Up";
-                document.getElementById('toggleText').innerText = "Already have an account?";
-                document.getElementById('toggleBtn').innerText = "Log In";
-            }
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('download-modal');
+            modal.classList.toggle('active');
         }
-
-        function showError(msg) {
-            errorText.innerText = msg;
-            errorText.classList.remove('hidden');
+        window.onclick = function(e) {
+            const modal = document.getElementById('download-modal');
+            if (e.target == modal) toggleModal();
         }
-
-        // ==== AUTO-LOGIN DETECTION LOGIC ====
-        onAuthStateChanged(auth, (user) => {
-            const authGroup = document.getElementById('navAuthGroup');
-            const userGroup = document.getElementById('navUserGroup');
-            
-            if (user) {
-                // User is logged in! Hide login buttons, show Dashboard.
-                authGroup.classList.add('hidden');
-                userGroup.classList.remove('hidden');
-                
-                // Show email or name
-                const displayName = user.displayName || user.email.split('@')[0];
-                document.getElementById('userNameDisplay').innerText = `Hello, ${displayName}`;
-                closeModal();
-            } else {
-                // Not logged in. Show login buttons.
-                authGroup.classList.remove('hidden');
-                userGroup.classList.add('hidden');
-            }
-        });
-
-        // ==== AUTHENTICATION ACTIONS ====
-        window.handleEmailAuth = async () => {
-            const email = document.getElementById('emailInput').value;
-            const pass = document.getElementById('passInput').value;
-            const btn = document.getElementById('submitBtn');
-            
-            if(!email || !pass) return showError("Please enter email and password.");
-            
-            try {
-                btn.innerText = "Processing...";
-                if(currentMode === 'signup') {
-                    await createUserWithEmailAndPassword(auth, email, pass);
-                } else {
-                    await signInWithEmailAndPassword(auth, email, pass);
-                }
-            } catch (error) {
-                btn.innerText = currentMode === 'signup' ? "Sign Up" : "Log In";
-                if(error.code === 'auth/email-already-in-use') showError("Email already registered. Please log in.");
-                else if(error.code === 'auth/invalid-credential') showError("Incorrect email or password.");
-                else showError(error.message);
-            }
-        };
-
-        window.handleGoogleAuth = async () => {
-            try {
-                errorText.classList.add('hidden');
-                await signInWithPopup(auth, provider);
-            } catch (error) {
-                if(error.code !== 'auth/popup-closed-by-user') {
-                    showError("Google Auth Failed. Please try again.");
-                }
-            }
-        };
-
-        window.logout = async () => {
-            await signOut(auth);
-            alert("Logged out successfully.");
-        };
     </script>
 </body>
 </html>
